@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.16)
 project(SleepyTimer VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 20)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 
@@ -12,12 +16,7 @@ qt_add_executable(appSleepyTimer
     main.cpp
 )
 
-qt_add_qml_module(appSleepyTimer
-    URI SleepyTimer
-    VERSION 1.0
-    QML_FILES
-        Main.qml
-)
+add_subdirectory(ui)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -32,6 +31,7 @@ set_target_properties(appSleepyTimer PROPERTIES
 
 target_link_libraries(appSleepyTimer
     PRIVATE Qt6::Quick
+    ui
 )
 
 include(GNUInstallDirs)

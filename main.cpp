@@ -12,7 +12,8 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.loadFromModule("SleepyTimer", "Main");
+    const QUrl url(QStringLiteral("ui/Main.qml"));
+    engine.load(url);
 
     return app.exec();
 }
